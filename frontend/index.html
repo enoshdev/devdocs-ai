@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DevDocs AI</title>
+<title>DevDocs AI — Instant Python Documentation</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,78 +17,31 @@
   --accent2: #ff6fd8;
   --accent3: #6fffd8;
 }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; overflow-x: hidden; }
 #bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 .page { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 60px 24px 80px; }
 .header { text-align: center; margin-bottom: 56px; animation: riseIn 0.7s cubic-bezier(.22,.68,0,1.2) both; }
-.badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 14px; border: 1px solid rgba(124,111,255,0.3);
-  border-radius: 999px; font-size: 11px; font-weight: 500;
-  letter-spacing: 1.2px; text-transform: uppercase;
-  color: var(--accent); background: rgba(124,111,255,0.06); margin-bottom: 24px;
-}
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border: 1px solid rgba(124,111,255,0.3); border-radius: 999px; font-size: 11px; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); background: rgba(124,111,255,0.06); margin-bottom: 24px; }
 .badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
-h1 {
-  font-family: 'Syne', sans-serif; font-size: clamp(42px, 7vw, 72px);
-  font-weight: 800; line-height: 1.05; letter-spacing: -2px;
-  background: linear-gradient(135deg, #ffffff 0%, #c4baff 40%, #ff6fd8 70%, #6fffd8 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; margin-bottom: 16px;
-}
+h1 { font-family: 'Syne', sans-serif; font-size: clamp(42px, 7vw, 72px); font-weight: 800; line-height: 1.05; letter-spacing: -2px; background: linear-gradient(135deg, #ffffff 0%, #c4baff 40%, #ff6fd8 70%, #6fffd8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
 .subtitle { font-size: 17px; font-weight: 300; color: var(--muted); max-width: 500px; margin: 0 auto; line-height: 1.6; }
-.input-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 20px; padding: 28px; margin-bottom: 24px;
-  transition: border-color 0.3s; animation: riseIn 0.7s 0.1s cubic-bezier(.22,.68,0,1.2) both;
-  backdrop-filter: blur(12px);
-}
+.input-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 28px; margin-bottom: 24px; transition: border-color 0.3s; animation: riseIn 0.7s 0.1s cubic-bezier(.22,.68,0,1.2) both; backdrop-filter: blur(12px); }
 .input-card:focus-within { border-color: rgba(124,111,255,0.4); }
-.input-label {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 500; letter-spacing: 1.5px;
-  text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
-}
-textarea {
-  width: 100%; height: 200px; background: rgba(0,0,0,0.3);
-  border: 1px solid var(--border); border-radius: 12px;
-  color: var(--text); font-family: 'JetBrains Mono', monospace;
-  font-size: 13.5px; line-height: 1.7; padding: 18px 20px;
-  resize: vertical; outline: none;
-  transition: border-color 0.25s, box-shadow 0.25s; caret-color: var(--accent);
-}
+.input-label { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+textarea { width: 100%; height: 200px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 12px; color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 13.5px; line-height: 1.7; padding: 18px 20px; resize: vertical; outline: none; transition: border-color 0.25s, box-shadow 0.25s; caret-color: var(--accent); }
 textarea::placeholder { color: rgba(112,112,160,0.5); }
 textarea:focus { border-color: rgba(124,111,255,0.5); box-shadow: 0 0 0 3px rgba(124,111,255,0.08); }
-button {
-  width: 100%; padding: 16px 24px; margin-top: 16px;
-  background: linear-gradient(135deg, var(--accent), #a855f7, var(--accent2));
-  border: none; border-radius: 12px; color: white;
-  font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700;
-  cursor: pointer; transition: transform 0.2s, opacity 0.2s;
-}
-button:hover:not(:disabled) { transform: translateY(-2px); opacity: 0.92; }
-button:disabled { opacity: 0.45; cursor: not-allowed; }
+.hint { font-size: 11px; color: var(--muted); margin-top: 8px; text-align: right; }
+button.main-btn { width: 100%; padding: 16px 24px; margin-top: 16px; background: linear-gradient(135deg, var(--accent), #a855f7, var(--accent2)); border: none; border-radius: 12px; color: white; font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; transition: transform 0.2s, opacity 0.2s; letter-spacing: 0.3px; }
+button.main-btn:hover:not(:disabled) { transform: translateY(-2px); opacity: 0.92; }
+button.main-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 .loader { display: none; text-align: center; padding: 36px 0; }
 .loader.show { display: block; }
-.loader-ring {
-  width: 48px; height: 48px; border: 2px solid rgba(255,255,255,0.06);
-  border-top-color: var(--accent); border-right-color: var(--accent2);
-  border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px;
-}
+.loader-ring { width: 48px; height: 48px; border: 2px solid rgba(255,255,255,0.06); border-top-color: var(--accent); border-right-color: var(--accent2); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
 .loader-text { font-size: 14px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
 .loader-text::after { content: ''; animation: ldots 1.4s infinite; }
 .results { display: flex; flex-direction: column; gap: 16px; }
-.result-card {
-  border-radius: 18px; padding: 26px 28px; border: 1px solid var(--border);
-  opacity: 0; transform: translateY(24px);
-  transition: opacity 0.5s, transform 0.5s; backdrop-filter: blur(12px);
-}
+.result-card { border-radius: 18px; padding: 26px 28px; border: 1px solid var(--border); opacity: 0; transform: translateY(24px); transition: opacity 0.5s, transform 0.5s; backdrop-filter: blur(12px); }
 .result-card.visible { opacity: 1; transform: translateY(0); }
 .result-card.exp { background: rgba(124,111,255,0.07); border-color: rgba(124,111,255,0.15); }
 .result-card.doc { background: rgba(111,255,216,0.07); border-color: rgba(111,255,216,0.15); }
@@ -104,12 +57,15 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
 .exp .card-title { color: var(--accent); }
 .doc .card-title { color: var(--accent3); }
 .imp .card-title { color: var(--accent2); }
+.copy-btn { margin-left: auto; padding: 5px 14px; background: rgba(111,255,216,0.08); border: 1px solid rgba(111,255,216,0.2); border-radius: 6px; color: var(--accent3); font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.2s; width: auto; font-family: 'Inter', sans-serif; letter-spacing: 0.3px; }
+.copy-btn:hover { background: rgba(111,255,216,0.16); transform: none; opacity: 1; }
+.copy-btn.copied { background: rgba(111,255,216,0.2); color: #fff; }
 .card-body { font-size: 14.5px; line-height: 1.75; color: rgba(240,240,248,0.85); font-weight: 300; }
-.card-body.code {
-  font-family: 'JetBrains Mono', monospace; font-size: 13px;
-  background: rgba(0,0,0,0.25); border: 1px solid var(--border);
-  border-radius: 10px; padding: 16px 20px; white-space: pre-wrap; overflow-x: auto;
-}
+.card-body.code { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: rgba(0,0,0,0.25); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; white-space: pre-wrap; overflow-x: auto; line-height: 1.65; }
+.imp-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.imp-item { display: flex; gap: 12px; align-items: flex-start; }
+.imp-num { width: 22px; height: 22px; border-radius: 50%; background: rgba(255,111,216,0.15); color: var(--accent2); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.imp-text { font-size: 14px; color: rgba(240,240,248,0.8); line-height: 1.65; font-weight: 300; }
 .footer { text-align: center; margin-top: 64px; font-size: 12px; color: rgba(112,112,160,0.4); font-family: 'JetBrains Mono', monospace; }
 @keyframes riseIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -120,36 +76,55 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
 <body>
 <canvas id="bg-canvas"></canvas>
 <div class="page">
+
   <div class="header">
-    <div class="badge"><span class="badge-dot"></span> Powered by Groq · LLaMA 3</div>
+    <div class="badge"><span class="badge-dot"></span> Powered by Groq · LLaMA 3.1</div>
     <h1>DevDocs AI</h1>
     <p class="subtitle">Paste any Python function. Get instant explanation, docstring and improvement suggestions.</p>
   </div>
+
   <div class="input-card">
     <div class="input-label">⬡ Your Python Code</div>
     <textarea id="codeInput" placeholder="def calculate_bmi(weight_kg, height_m):&#10;    return weight_kg / (height_m ** 2)"></textarea>
-    <button id="analyzeBtn" onclick="analyzeCode()">✦ Analyze My Code</button>
+    <div class="hint">Ctrl + Enter to analyze</div>
+    <button class="main-btn" id="analyzeBtn" onclick="analyzeCode()">✦ Analyze My Code</button>
   </div>
+
   <div class="loader" id="loader">
     <div class="loader-ring"></div>
     <div class="loader-text">Analyzing your code</div>
   </div>
+
   <div class="results" id="results">
     <div class="result-card exp" id="expCard">
-      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">What This Does</div></div>
+      <div class="card-header">
+        <div class="card-icon">💡</div>
+        <div class="card-title">What This Does</div>
+      </div>
       <div class="card-body" id="expText"></div>
     </div>
+
     <div class="result-card doc" id="docCard">
-      <div class="card-header"><div class="card-icon">📄</div><div class="card-title">Generated Docstring</div></div>
+      <div class="card-header">
+        <div class="card-icon">📄</div>
+        <div class="card-title">Generated Docstring</div>
+        <button class="copy-btn" id="copyBtn" onclick="copyDocstring()">Copy</button>
+      </div>
       <div class="card-body code" id="docText"></div>
     </div>
+
     <div class="result-card imp" id="impCard">
-      <div class="card-header"><div class="card-icon">⚡</div><div class="card-title">Suggested Improvements</div></div>
-      <div class="card-body" id="impText"></div>
+      <div class="card-header">
+        <div class="card-icon">⚡</div>
+        <div class="card-title">Suggested Improvements</div>
+      </div>
+      <ul class="imp-list" id="impList"></ul>
     </div>
   </div>
+
   <div class="footer">devdocs-ai · built by enosh · github.com/enoshdev</div>
 </div>
+
 <script>
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
@@ -161,7 +136,7 @@ function Particle() {
   this.speedY = (Math.random()-0.5)*0.3; this.opacity = Math.random()*0.5+0.1;
   this.color = ['#7c6fff','#ff6fd8','#6fffd8'][Math.floor(Math.random()*3)];
 }
-function initParticles() { particles = []; for(let i=0;i<80;i++) particles.push(new Particle()); }
+function initParticles() { particles=[]; for(let i=0;i<80;i++) particles.push(new Particle()); }
 function draw() {
   ctx.clearRect(0,0,W,H);
   particles.forEach(p => {
@@ -175,13 +150,8 @@ function draw() {
   for(let i=0;i<particles.length;i++) {
     for(let j=i+1;j<particles.length;j++) {
       const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
-      const dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<120) {
-        ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y);
-        ctx.lineTo(particles[j].x,particles[j].y);
-        ctx.strokeStyle='rgba(124,111,255,'+(0.06*(1-dist/120))+')';
-        ctx.lineWidth=0.5; ctx.stroke();
-      }
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<120) { ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle='rgba(124,111,255,'+(0.06*(1-d/120))+')'; ctx.lineWidth=0.5; ctx.stroke(); }
     }
   }
   requestAnimationFrame(draw);
@@ -196,20 +166,32 @@ async function analyzeCode() {
   const loader = document.getElementById('loader');
   btn.disabled=true; btn.textContent='⏳ Analyzing...';
   loader.classList.add('show');
-  ['expCard','docCard','impCard'].forEach(id => document.getElementById(id).classList.remove('visible'));
+  ['expCard','docCard','impCard'].forEach(id=>document.getElementById(id).classList.remove('visible'));
+
   try {
     const res = await fetch('http://127.0.0.1:8000/analyze', {
       method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({code})
     });
     const data = await res.json();
+
     document.getElementById('expText').textContent = data.explanation;
     document.getElementById('docText').textContent = data.docstring;
-    document.getElementById('impText').textContent = data.improvements;
+
+    const improvements = data.improvements.split('\n').filter(l=>l.trim());
+    const impList = document.getElementById('impList');
+    impList.innerHTML = improvements.map((item, i) => `
+      <li class="imp-item">
+        <div class="imp-num">${i+1}</div>
+        <div class="imp-text">${item.replace(/^\d+[\.\)]\s*/,'')}</div>
+      </li>
+    `).join('');
+
     loader.classList.remove('show');
     setTimeout(()=>document.getElementById('expCard').classList.add('visible'),50);
     setTimeout(()=>document.getElementById('docCard').classList.add('visible'),150);
     setTimeout(()=>document.getElementById('impCard').classList.add('visible'),250);
+
   } catch(e) {
     loader.classList.remove('show');
     alert('Cannot connect to backend. Make sure uvicorn is running.');
@@ -217,6 +199,17 @@ async function analyzeCode() {
     btn.disabled=false; btn.textContent='✦ Analyze My Code';
   }
 }
+
+function copyDocstring() {
+  const text = document.getElementById('docText').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent='Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
 document.getElementById('codeInput').addEventListener('keydown', e => {
   if(e.ctrlKey && e.key==='Enter') analyzeCode();
 });
