@@ -1,30 +1,29 @@
-# DevDocs AI
+---
+title: DevDocs AI
+emoji: 🤖
+colorFrom: purple
+colorTo: blue
+sdk: docker
+pinned: false
+---
 
-An AI-powered developer tool that instantly explains Python code, generates docstrings, and suggests improvements.
+# 🤖 DevDocs AI
 
-## Live Demo
-[Coming soon after deployment]
+> Paste any Python function. Get instant explanation, docstring and improvement suggestions — powered by Groq LLaMA 3.1.
 
-## What It Does
-- Paste any Python function
-- Get plain English explanation
-- Get a generated docstring
-- Get 3 specific improvement suggestions
+## ✨ Features
+- 💡 Plain English explanation of what your code does
+- 📄 Auto-generated Google-style docstring
+- ⚡ 3 specific improvement suggestions
+- 📋 One-click copy for generated docstring
 
-## Tech Stack
-- Backend: Python, FastAPI, Groq API (LLaMA 3)
-- Frontend: HTML, CSS, JavaScript
-- Deployment: Render (backend), Netlify (frontend)
+## 🛠 Tech Stack
+- **Backend:** Python, FastAPI, Groq API (LLaMA 3.1)
+- **Frontend:** HTML, CSS, JavaScript
+- **Deployment:** Hugging Face Spaces + Netlify
 
-## Run Locally
+## 🚀 Live Demo
+[Coming soon]
 
-### Backend
-cd backend
-pip install -r requirements.txt
-python -m uvicorn main:app --reload
-
-### Frontend
-Open frontend/index.html with Live Server in VS Code
-
-## Author
-Built by Enosh — github.com/enoshdev
+## 👨‍💻 Author
+Built by [Enosh](https://github.com/enoshdev) — IT undergrad at Vasavi College of Engineering
