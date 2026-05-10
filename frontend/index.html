@@ -169,7 +169,7 @@ async function analyzeCode() {
   ['expCard','docCard','impCard'].forEach(id=>document.getElementById(id).classList.remove('visible'));
 
   try {
-    const res = await fetch('http://127.0.0.1:8000/analyze', {
+    const res = await fetch('https://enoshdev-devdocs-ai.hf.space/analyze', {
       method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({code})
     });
