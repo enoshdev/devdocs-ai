@@ -33,14 +33,17 @@ python -m uvicorn main:app --reload
 Open `frontend/index.html` with Live Server in VS Code.
 
 ## 📁 Project Structure
+
+```
 devdocs-ai/
-backend/
-main.py          # FastAPI app + Groq AI integration
-requirements.txt
-Dockerfile       # For Hugging Face deployment
-frontend/
-index.html       # Full UI with particle animations
-README.md
+  backend/
+    main.py          # FastAPI app + Groq AI integration
+    requirements.txt
+    Dockerfile       # For Hugging Face deployment
+  frontend/
+    index.html       # Full UI with particle animations
+  README.md
+```
 
 ## 👨‍💻 Author
 Built by **Enosh** — IT undergrad at Vasavi College of Engineering, Hyderabad
