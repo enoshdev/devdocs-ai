@@ -46,6 +46,6 @@ devdocs-ai/
 ```
 
 ## 👨‍💻 Author
-Built by **Enosh** — IT undergrad at Vasavi College of Engineering, Hyderabad
+Built by **G Enosh** — IT undergrad at Vasavi College of Engineering, Hyderabad
 
 [![GitHub](https://img.shields.io/badge/GitHub-enoshdev-181717?style=flat&logo=github)](https://github.com/enoshdev)
